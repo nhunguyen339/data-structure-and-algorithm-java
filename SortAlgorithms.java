@@ -1,7 +1,8 @@
 public class SortAlgorithms {
     public static void main(String[] args) {
 //        bubbleSort();
-        selectionSort();
+//        selectionSort();
+        insertionSort();
     }
 
     // swap largest to sort partion
@@ -54,5 +55,28 @@ public class SortAlgorithms {
             System.out.println("item: " + i + ": " + array[i]);
         }
     }
+
+    public static void insertionSort() {
+        int[] intArray = {9,8,10,3,1,2,3,5,3,7};
+
+        for (int lastUnsortIndex = 0; lastUnsortIndex < intArray.length; lastUnsortIndex ++) {
+            int unsortedValue = intArray[lastUnsortIndex];
+            int i;
+            for (i = lastUnsortIndex; i > 0 && unsortedValue < intArray[i - 1]; i --) {
+                intArray[i] = intArray[i - 1];
+            }
+
+            intArray[i] = unsortedValue;
+//            for (int i = lastUnsortIndex - 1; i >= 0 ; i --) {
+//                if (unsortedValue < intArray[i]) {
+//                    swap(i, i + 1, intArray);
+//                }
+//            }
+        }
+
+        printArray(intArray);
+
+    }
+
 
 }
