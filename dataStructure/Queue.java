@@ -21,7 +21,12 @@ public class Queue {
             if (rear == -1) {
                 front++;
             }
-            arr[++rear] = value;
+            if (rear == front & front == capacity - 1) {
+                System.out.println("out of memory");
+                return;
+            } else {
+                arr[++rear] = value;
+            }
         }
     }
 
@@ -67,12 +72,12 @@ public class Queue {
         Queue queue = new Queue(3);
 
         queue.enqueue(1);
-//        queue.enqueue(4);
-//        queue.enqueue(7);
+        queue.enqueue(4);
+        queue.enqueue(7);
 //        queue.enqueue(5);
 
         queue.dequeue();
-//        queue.dequeue();
+        queue.dequeue();
         queue.enqueue(5);
 
         queue.printArr();
