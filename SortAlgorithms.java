@@ -4,7 +4,8 @@ public class SortAlgorithms {
 //        selectionSort();
 //        insertionSort();
 //            shellSort();
-        mergeSortPrint();
+//        mergeSortPrint();
+        printCountSort();
     }
 
     // swap largest to sort partion
@@ -162,4 +163,56 @@ public class SortAlgorithms {
         printArray(intArray);
     }
 
+
+        public static int[] countingSort(int[] arr) {
+            //Find the largest number
+            int maxElement = 0;
+            for (int i = 0; i < arr.length; i++) {
+                if (maxElement < arr[i]) {
+                    maxElement = arr[i];
+                }
+            }
+
+
+            //Create array length == the largest number
+            int[] countArr =  new int[maxElement + 1];
+
+            for (int i = 0; i < countArr.length; i++) {
+                countArr[i] = 0;
+            }
+
+            //Store the count of each element in the respective index
+
+            for (int i = 0; i < arr.length; i++) {
+                countArr[arr[i]] += 1;
+            }
+
+            //Store cumulative of each element in the array
+            int cumulate = 0;
+            for (int i = 1; i < countArr.length; i++) {
+                if (countArr[i] != 0) {
+                    cumulate += countArr[i];
+                    countArr[i] = cumulate;
+                }
+            }
+
+            int[] output = new int[arr.length];
+            //Find index of each element base on value, give the order in the sorted array
+            for (int i = 0; i < arr.length; i++) {
+                output[countArr[arr[i]] - 1] = arr[i];
+
+                //Minus 1 after each sort of its element
+                countArr[arr[i]] --;
+            }
+
+            return output;
+        }
+
+        public static void printCountSort() {
+            int[] arr = {9,2,4,2,4,5,1,7};
+            int[] output = countingSort(arr);
+            for (int i = 0; i < output.length ; i++) {
+                System.out.println("Counting Sort Result:" + output[i]);
+            }
+        }
     }
